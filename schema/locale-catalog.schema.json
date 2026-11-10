@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://withmarble.com/taxonomy/schema/locale-catalog.schema.json",
+  "title": "Marble Skill Taxonomy — locale catalog",
+  "description": "Index of locale overlays. File hashes cover the locale JSON bytes. English canonical checksums stay in data/manifest.json.",
+  "type": "object",
+  "required": ["version", "sourceLocale", "description", "excluded", "locales"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "sourceLocale": { "const": "en" },
+    "description": { "type": "string", "minLength": 1 },
+    "excluded": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "locales": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "language", "endonym", "status", "reviewStatus", "path", "files"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$" },
+          "language": { "type": "string", "pattern": "^[a-z]{2,3}(?:-[A-Za-z]{4})?(?:-[A-Z]{2})?$" },
+          "endonym": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["community-draft", "reviewed"] },
+          "reviewStatus": { "enum": ["needs-native-speaker-review", "native-speaker-reviewed"] },
+          "path": { "type": "string", "minLength": 1 },
+          "files": {
+            "type": "object",
+            "required": ["topics.json", "dependencies.json", "clusters.json", "messages.json"],
+            "additionalProperties": false,
+            "properties": {
+              "topics.json": {
+                "type": "object",
+                "required": ["bytes", "sha256"],
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": { "type": "integer", "minimum": 0 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                }
+              },
+              "dependencies.json": {
+                "type": "object",
+                "required": ["bytes", "sha256"],
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": { "type": "integer", "minimum": 0 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                }
+              },
+              "clusters.json": {
+                "type": "object",
+                "required": ["bytes", "sha256"],
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": { "type": "integer", "minimum": 0 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                }
+              },
+              "messages.json": {
+                "type": "object",
+                "required": ["bytes", "sha256"],
+                "additionalProperties": false,
+                "properties": {
+                  "bytes": { "type": "integer", "minimum": 0 },
+                  "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

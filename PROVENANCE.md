@@ -2,7 +2,9 @@
 
 The micro-topics, the prerequisite graph, and all of Marble's authored text are original work, released under ODbL 1.0 + CC BY-SA 4.0 (see [README](README.md#license)).
 
-**`data/curriculum-standards.json` is different.** Those standards are extracted from external curriculum frameworks that Marble does **not** own and **cannot** relicense. You can only receive from us the rights the upstream holders grant. Each source's terms — and exactly what we ship — are below.
+Translations in [`data/locales/`](data/locales/) are adaptations of that Marble-authored text. They stay under CC BY-SA 4.0 and, as part of this database, under ODbL share-alike. They do not relicense anything. A locale file's attribution and review notice travel with the text. The current Simplified Chinese overlay is a community/AI-assisted draft and needs native-speaker review before it is treated as teaching guidance. See [docs/i18n.md](docs/i18n.md).
+
+**`data/curriculum-standards.json` is different.** Those standards are extracted from external curriculum frameworks that Marble does **not** own and **cannot** relicense. You can only receive from us the rights the upstream holders grant. Each source's terms — and exactly what we ship — are below. Locale files do not translate or reproduce that third-party wording.
 
 
 ## The "codes-only" distinction

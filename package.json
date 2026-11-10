@@ -8,6 +8,7 @@
   "homepage": "https://withmarble.com",
   "scripts": {
     "validate": "node scripts/validate.mjs",
+    "locales:check": "node scripts/check-locales.mjs",
     "test": "node --test scripts/*.test.mjs",
     "alignments:check": "node scripts/curriculum-alignments.mjs check",
     "alignments:normalize": "node scripts/curriculum-alignments.mjs normalize",

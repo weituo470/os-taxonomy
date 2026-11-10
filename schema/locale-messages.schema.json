@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://withmarble.com/taxonomy/schema/locale-messages.schema.json",
+  "title": "Marble Skill Taxonomy — locale labels",
+  "description": "Display labels for subjects, domains, topic types, dependency strength and suggested curriculum-map chrome. Subject and domain keys stay in English so they join the canonical graph.",
+  "type": "object",
+  "required": ["locale", "language", "sourceLocale", "sourceFile", "status", "reviewStatus", "translationMethod", "contentLicense", "databaseLicense", "attribution", "reviewNotice", "sourceProjectionSha256", "subjects", "domains", "topicTypes", "dependencyStrengths", "labels"],
+  "additionalProperties": false,
+  "properties": {
+    "locale": { "type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$" },
+    "language": { "type": "string", "pattern": "^[a-z]{2,3}(?:-[A-Za-z]{4})?(?:-[A-Z]{2})?$" },
+    "sourceLocale": { "const": "en" },
+    "sourceFile": { "const": "messages.json" },
+    "status": { "enum": ["community-draft", "reviewed"] },
+    "reviewStatus": { "enum": ["needs-native-speaker-review", "native-speaker-reviewed"] },
+    "translationMethod": { "type": "string", "minLength": 1 },
+    "contentLicense": { "const": "CC-BY-SA-4.0" },
+    "databaseLicense": { "const": "ODbL-1.0" },
+    "attribution": { "type": "string", "minLength": 1 },
+    "reviewNotice": { "type": "string", "minLength": 1 },
+    "sourceProjectionSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "subjects": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "domains": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "type": "string", "minLength": 1 }
+      }
+    },
+    "topicTypes": {
+      "type": "object",
+      "required": ["CONCEPTUAL", "PROCEDURAL", "REPRESENTATIONAL", "LANGUAGE", "META"],
+      "additionalProperties": false,
+      "properties": {
+        "CONCEPTUAL": { "type": "string", "minLength": 1 },
+        "PROCEDURAL": { "type": "string", "minLength": 1 },
+        "REPRESENTATIONAL": { "type": "string", "minLength": 1 },
+        "LANGUAGE": { "type": "string", "minLength": 1 },
+        "META": { "type": "string", "minLength": 1 }
+      }
+    },
+    "dependencyStrengths": {
+      "type": "object",
+      "required": ["hard", "soft"],
+      "additionalProperties": false,
+      "properties": {
+        "hard": { "type": "string", "minLength": 1 },
+        "soft": { "type": "string", "minLength": 1 }
+      }
+    },
+    "labels": {
+      "type": "object",
+      "required": ["languageName", "sourceLanguageName", "switchLanguage", "draftNotice", "curriculumMap", "topics", "prerequisites", "evidence", "assessmentPrompt", "clusterSummary", "subject", "domain", "reason", "hardPrerequisite", "softPrerequisite", "ageRange"],
+      "additionalProperties": false,
+      "properties": {
+        "languageName": { "type": "string", "minLength": 1 },
+        "sourceLanguageName": { "type": "string", "minLength": 1 },
+        "switchLanguage": { "type": "string", "minLength": 1 },
+        "draftNotice": { "type": "string", "minLength": 1 },
+        "curriculumMap": { "type": "string", "minLength": 1 },
+        "topics": { "type": "string", "minLength": 1 },
+        "prerequisites": { "type": "string", "minLength": 1 },
+        "evidence": { "type": "string", "minLength": 1 },
+        "assessmentPrompt": { "type": "string", "minLength": 1 },
+        "clusterSummary": { "type": "string", "minLength": 1 },
+        "subject": { "type": "string", "minLength": 1 },
+        "domain": { "type": "string", "minLength": 1 },
+        "reason": { "type": "string", "minLength": 1 },
+        "hardPrerequisite": { "type": "string", "minLength": 1 },
+        "softPrerequisite": { "type": "string", "minLength": 1 },
+        "ageRange": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

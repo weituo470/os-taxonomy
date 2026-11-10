@@ -12,6 +12,9 @@ test('validator rejects orphaned subject/domain pairs without requiring an exact
     for (const directory of ['data', 'schema', 'scripts']) {
       cpSync(new URL(`../${directory}`, import.meta.url), join(fixture, directory), { recursive: true });
     }
+    // This fixture rewrites cluster text. Locale coverage is checked on the
+    // published tree, where the English prose is unchanged.
+    rmSync(join(fixture, 'data', 'locales'), { recursive: true, force: true });
     const clustersPath = join(fixture, 'data', 'clusters.json');
     const manifestPath = join(fixture, 'data', 'manifest.json');
     const original = JSON.parse(readFileSync(clustersPath, 'utf8'));

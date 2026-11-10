@@ -17,5 +17,6 @@ jobs:
         with:
           node-version: 22
       - run: npm run validate
+      - run: npm run locales:check
       - run: npm run alignments:generated-check
       - run: npm test

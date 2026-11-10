@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "sourceLocale": "en",
+  "description": "Locale overlays translate Marble-authored user-facing text. English JSON remains the canonical graph. Third-party curriculum-standard text is not included.",
+  "excluded": [
+    "curriculum-standards.json",
+    "teaching-research.json",
+    "archived-teaching-research.json",
+    "curriculum-alignments.json"
+  ],
+  "locales": [
+    {
+      "id": "zh-CN",
+      "language": "zh-Hans",
+      "endonym": "简体中文",
+      "status": "community-draft",
+      "reviewStatus": "needs-native-speaker-review",
+      "path": "locales/zh-CN",
+      "files": {
+        "topics.json": {
+          "bytes": 1485366,
+          "sha256": "a83f6a235df9b5ad8ec5984ab2f60b00a8af5b1fb5b67f81240b2135c7192328"
+        },
+        "dependencies.json": {
+          "bytes": 762258,
+          "sha256": "d533f56e19faa793c407277fee2d69e28b53a5fd7fca65055a09ad8eb6d7e35d"
+        },
+        "clusters.json": {
+          "bytes": 53057,
+          "sha256": "bacd46113644c95a50676d8e77efdf2c67d4aa1bc337ad3b039fdfecee8b954f"
+        },
+        "messages.json": {
+          "bytes": 5528,
+          "sha256": "e9387e4032925005d07a3840d8320b0bfa33224e9a1251d0ad61c54133296a77"
+        }
+      }
+    }
+  ]
+}
