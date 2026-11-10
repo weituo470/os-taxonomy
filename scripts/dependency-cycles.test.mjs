@@ -38,6 +38,9 @@ test('validator rejects a cycle even when counts and checksums match', () => {
     for (const directory of ['data', 'schema', 'scripts']) {
       cpSync(new URL(`../${directory}`, import.meta.url), join(fixture, directory), { recursive: true });
     }
+    // The synthetic reverse edge changes English prose. Locale coverage is
+    // checked on the published tree instead of this mutated copy.
+    rmSync(join(fixture, 'data', 'locales'), { recursive: true, force: true });
     const dependencyPath = join(fixture, 'data', 'dependencies.json');
     const manifestPath = join(fixture, 'data', 'manifest.json');
     const dependencies = JSON.parse(readFileSync(dependencyPath, 'utf8'));

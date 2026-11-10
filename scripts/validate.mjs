@@ -16,6 +16,7 @@ import { fileURLToPath } from 'node:url';
 import { checkTeachingResearch } from './check-teaching-research.mjs';
 import { findDependencyCycle } from './check-dependency-cycles.mjs';
 import { checkTopicCompatibility } from './check-curriculum-alignments.mjs';
+import { checkLocalesFromDisk, localeCatalogSummary } from './locale-overlay.mjs';
 
 const DATA = resolve(dirname(fileURLToPath(import.meta.url)), '..', 'data');
 const load = (name) => JSON.parse(readFileSync(resolve(DATA, name), 'utf8'));
@@ -115,6 +116,10 @@ if (hasAlignments) {
   check(manifest.counts?.curriculumAlignments === alignments?.alignments?.length, 'manifest curriculumAlignments count mismatch');
 }
 
+// --- locale overlays: translated Marble text, joined by English IDs ---------
+const localeSummary = localeCatalogSummary(DATA);
+if (localeSummary !== null) errors.push(...checkLocalesFromDisk(DATA));
+
 // --- manifest checksums -----------------------------------------------------
 for (const [name, meta] of Object.entries(manifest.files ?? {})) {
   if (name === ALIGNMENTS && !hasAlignments) continue; // Missing file already reported above.
@@ -132,5 +137,6 @@ if (errors.length) {
 console.log(
   `✓ valid — ${topics.topics.length} topics, ${deps.dependencies.length} dependencies, ` +
     `${standardKeys.size} standards, ${clusters.clusters.length} clusters, ${research.recordCount} research records. ` +
-    `Referential integrity + checksums OK. Alignment contract: ${hasAlignments ? 'validated' : 'not supplied (preparation mode)'}.`,
+    `Referential integrity + checksums OK. Alignment contract: ${hasAlignments ? 'validated' : 'not supplied (preparation mode)'}. ` +
+    `Locale catalog: ${localeSummary ?? 'not supplied'}.`,
 );

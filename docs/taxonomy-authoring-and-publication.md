@@ -37,7 +37,7 @@ Normal Git conflicts are resolved in the PR, and checks rerun against the combin
 
 | Content | Authority |
 | --- | --- |
-| Stable topic IDs, types, names, descriptions, evidence and assessment questions | Reviewed repository content |
+| Stable topic IDs, types, names, descriptions, evidence and assessment questions | Reviewed repository content. English is canonical. A locale overlay translates Marble-authored text and does not create a second graph. |
 | Dependencies and complete public curriculum alignments | Reviewed repository content |
 | Public source identities, codes, links, coverage reports, guidance and cluster summaries | Reviewed repository content, subject to source publication policy |
 | Global bounds, flat standard lists, centrality, counts and checksums | Versioned deterministic computation over the repository snapshot |

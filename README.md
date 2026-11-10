@@ -47,8 +47,9 @@ All data lives in [`data/`](data/) as UTF-8 JSON. See [`schema/`](schema/) for J
 | [`data/clusters.json`](data/clusters.json) | Parent-friendly domain summaries. |
 | [`data/teaching-research.json`](data/teaching-research.json) | Teaching research joined by `topicId`, with explicit coverage and publication notes (~24 MB). |
 | [`data/archived-teaching-research.json`](data/archived-teaching-research.json) | Historical guidance for merged or refocused topics, with original records and current topic associations. |
-| [`data/manifest.json`](data/manifest.json) | Counts, per-subject breakdown, per-file checksums. |
+| [`data/manifest.json`](data/manifest.json) | Counts, per-subject breakdown, per-file checksums for the English canonical files. |
 | [`data/curriculum-alignments.json`](data/curriculum-alignments.json) | Scoped framework, jurisdiction and global age contexts; source for flat compatibility fields. |
+| [`data/locales/`](data/locales/) | Translations of Marble-authored user-facing text. English remains canonical. |
 
 The catalogue contains **19 sources / 8,313 standards/source-position records**. A separate [NCERT NCF-SE October 2024 edition proposal](reports/ncert-ncfse-preparatory-core-catalogue-2026-11-09.md) contributes 254 formal stage goals/competencies: 172 Preparatory records shared across Grades 3–5 and [82 Foundational records](reports/ncert-ncfse-foundational-catalogue-2026-11-09.md) preserving full ages 3–8 stage scope, without grade clones; the [Arts/PE extension](reports/ncert-ncfse-preparatory-arts-pe-catalogue-2026-11-09.md) preserves nested source-set applicability. The NCERT foundational source contributes 316 positions: 67 Maths, 34 English L2, 66 Physical/Motor, 34 Socio-emotional/Ethical, 30 Arts, 18 Learning Habits and 11 Cognitive positions intersecting Grades 1–2, plus 56 shared-stage positions from the [Arts syllabus explicit outcome column](reports/ncert-foundational-arts-syllabus-catalogue-2026-11-09.md) without an invented required grade. Shared grade cells and a repeated printed English requirement are preserved; source-position totals count neither distinct skills nor grade memberships. See the [NCERT catalogue report](reports/ncert-english-l2-catalogue-2026-11-09.md) and [remaining primary scope](reports/ncert-primary-catalogue-scope-2026-11-09.md). It includes 620 Australian Curriculum v9 content descriptions and 3,862 Ontario expectations from nine elementary documents. Ontario is exported as codes and official source links only; ingestion of source expectations is separate from authoring topic coverage. Ontario Grades 1–7 Mathematics have received focused taxonomy authoring passes. The [Grade 2 report](reports/ontario-grade2-mathematics-2026-10-23.md) distinguishes reused claims, extracted elementary claims and the concurrency gap; mappings do not certify learner mastery of every linked topic. The [Grade 3 report](reports/ontario-grade3-mathematics-2026-10-23.md) records reuse of 114 existing topics, the congruence extension and prerequisite repairs; no topics were added. The [Grade 4 report](reports/ontario-grade4-mathematics-2026-10-24.md) records reuse of 126 existing topics, two missing skills, two focused extractions and prerequisite repairs. The [Grade 5 report](reports/ontario-grade5-mathematics-2026-10-24.md) records reuse of 145 existing topics, one missing mathematical representation, one financial/civic concept and one focused extraction. The [Grade 6 report](reports/ontario-grade6-mathematics-2026-10-27.md) records reuse of 173 existing topics and five additions: two procedures, one focused extraction and two financial-content claims. The [Grade 7 report](reports/ontario-grade7-mathematics-2026-10-27.md) records reuse of 171 existing topics and two spatial additions; the square-root proposal was withdrawn.
 
@@ -171,6 +172,12 @@ subject trees.
 ```
 
 `topicId` **depends on** `prerequisiteId`. Reverse the edge to get "unlocks".
+
+## Languages
+
+English in `data/topics.json`, `data/dependencies.json` and `data/clusters.json` is the source of truth. [`data/locales/`](data/locales/) holds overlays that translate Marble-authored names, descriptions, evidence, assessment prompts, dependency reasons and cluster summaries without copying the graph. The first overlay is Simplified Chinese (`zh-CN`, language `zh-Hans`). It is a community/AI-assisted draft and needs native-speaker review before teaching use.
+
+The interactive map at [withmarble.com/curriculum](https://withmarble.com/curriculum) is not published from this repository. A consumer joins a locale by topic ID, reads display labels from `messages.json`, and should show that locale's draft notice in a language switcher. Third-party curriculum-standard text is not translated. See [docs/i18n.md](docs/i18n.md) for the file layout, the switcher contract, and how to add a language.
 
 ## Teaching research
 
@@ -313,6 +320,7 @@ This dataset is **multi-licensed** — read this before you use or redistribute 
 |---|---|
 | **The database** — the collection, structure, IDs, topic↔topic and topic↔standard relationships | [**ODbL 1.0**](LICENSE) — free for research **and** commercial use, **attribution** required, **share-alike** (derivative *databases* must stay open under ODbL). |
 | **The textual content Marble authored** — topic `description`/`name`/`evidence`/`assessmentPrompt`, dependency `reason`s, cluster `summary`s, original teaching-research prose | [**CC BY-SA 4.0**](LICENSE-CONTENT) — same spirit: attribution + share-alike. |
+| **Translations of that Marble-authored text** — `data/locales/` | [**CC BY-SA 4.0**](LICENSE-CONTENT) adapted material, and part of the ODbL database. Keep the same attribution and share-alike duties. Current translations are community drafts, not a second canonical graph. |
 | **Marble-authored learning examples** — application source, original artwork, captures and design notes | [**CC BY-SA 4.0**](LICENSE-CONTENT). Bundled Three.js and Baloo 2 retain their separate MIT and OFL licenses and notices. |
 | **`curriculum-standards.json`** — extracted from third-party frameworks | **Not** Marble's to relicense. Each source is under **its own upstream license** — see [**PROVENANCE.md**](PROVENANCE.md). |
 
@@ -324,7 +332,7 @@ Any use must credit:
 
 > Marble Skill Taxonomy (v1) · © Generative Spark, Inc. (Marble) · https://withmarble.com · licensed under ODbL 1.0 (database) and CC BY-SA 4.0 (content).
 
-Plus the upstream notices in [PROVENANCE.md](PROVENANCE.md) for any curriculum standards you use. See [CITATION.cff](CITATION.cff) for a formal citation.
+If you use a translation, say that it is a translation, name the locale, and keep the same credit. A community draft also needs its review notice. Plus the upstream notices in [PROVENANCE.md](PROVENANCE.md) for any curriculum standards you use. See [CITATION.cff](CITATION.cff) for a formal citation.
 
 ## What's *not* here
 
